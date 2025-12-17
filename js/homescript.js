@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     logoutBtn.addEventListener("click", function () {
         localStorage.removeItem("currentUser");
-        alert("👋 Logged out successfully");
+        alert("Logged out successfully");
         window.location.replace("login.html");
     });
 
@@ -89,10 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(res => res.text())
         .then(result => {
             if (result === "success") {
-                alert("✅ Message sent successfully");
+                alert("Message sent successfully");
                 form.reset();
             } else {
-                alert("❌ Something went wrong");
+                alert(" Something went wrong");
             }
         });
     });

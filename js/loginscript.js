@@ -19,8 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     passwordInput.addEventListener("input", function () {
-        if (passwordInput.value.trim() === "") {
-            passwordError.innerText = "*Password is required";
+          const passwordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            
+       if (!passwordRegex.test(passwordInput.value)) {
+            passwordError.innerText = "*Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)";
             passwordInput.style.border = "1px solid red";
         } else {
             passwordError.innerText = "";

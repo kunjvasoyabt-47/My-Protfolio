@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/homestyle.css">
+    <script src="../js/homescript.js" defer></script>
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
+
+<div class="home-container">
+
+    <div class="welcome-card">
+        <h1>Welcome 👋</h1>
+        <p class="welcome-text">
+            You have successfully logged in.  
+        </p>
+
+        <button id="logoutBtn" class="btn secondary">Logout</button>
+    </div>
+
+    <div class="contact-card">
+        <h2>Contact Us</h2>
+
+        <form id="contact-form">
+
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+            <div class="error-message" id="name-error"></div>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+            <div class="error-message" id="email-error"></div>
+
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" required></textarea>
+            <div class="error-message" id="message-error"></div>
+
+            <button type="submit" class="btn primary">Send Message</button>
+
+        </form>
+    </div>
+
+</div>
+
 </body>
 </html>

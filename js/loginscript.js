@@ -40,9 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         if (userFound) {
-            alert("Login Successful");
-            window.location.href = "home.html";
-        } else {
+        localStorage.setItem("currentUser", emailInput.value);
+        alert("Login successful!");
+        window.location.replace("home.html");
+            } else {
             alert("Invalid email or password");
         }
 

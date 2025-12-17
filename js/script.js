@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
 
 
-    const sheetURL = "https://script.google.com/macros/s/AKfycbzM3YQdB4rXMAqqQ5gGGlI3qpRSp60dIwg5tTfTS-PVwuFcdv73QT8HxedO_zrFRIGpBQ/exec";
+    const sheetURL = "https://script.google.com/macros/s/AKfycbzQGob7UisqmpIR982wYaA_LwdFy3Kb88lOQg0xeeAauJxNMsKj1cAfinh9Ko1foSkP4g/exec";
 
 
     usernameInput.addEventListener("input", function () {

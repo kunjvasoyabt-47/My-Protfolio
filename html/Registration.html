@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/script.js" ></script>
+    <title>Registration Form</title>
+</head>
+<body>
+    
+    <div id="my-form">
+        <div id="heading">
+          <h1>Registration Form</h1>
+        </div>
+    <div id="all-fields">
+        <form method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+            <div id="username-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <div id="email-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <label for="password">Password:</label> <br>
+            <input type="password" id="password" name="password" required><br><br>
+            <div id="password-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <label for="confirm_password">Confirm Password:</label><br>
+            <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+            <div id="confirm-password-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <label for="dob">Date of Birth:</label><br>
+            <input type="date" id="dob" name="dob" required><br><br>
+            <div id="dob-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree Terms and Conditions</label><br><br>
+            <div id="terms-error" class="error-message" style="color: red;font-size: smaller;"></div>
+
+            <button type="submit" >Register</button>
+
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>

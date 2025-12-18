@@ -143,21 +143,28 @@ document.addEventListener("DOMContentLoaded", function () {
             termsAccepted: termsCheckbox.checked
         };
 
+        showLoader();
+
         fetch(sheetURL, {
-        method: "POST",
-        body: JSON.stringify(sheetData)
+            method: "POST",
+            body: JSON.stringify(sheetData)
         })
         .then(res => res.text())
         .then(result => {
-        if (result === "duplicate") {
-            emailError.innerText = "Email already registered";
-            emailInput.style.border = "1px solid red";
-        } else if (result === "success") {
-            alert("Registration Successful");       
-            form.reset();
-            window.location.href = "login.html";
-        }
+            hideLoader();
+
+            if (result === "success") {
+                alert("🎉 Registration Successful");
+                window.location.href = "login.html";
+            } else if (result === "duplicate") {
+                emailError.innerText = "Email already registered";
+            }
+        })
+        .catch(() => {
+            hideLoader();
+            alert("Network error");
         });
+
       });
 
 });

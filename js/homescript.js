@@ -3,6 +3,7 @@ if (!localStorage.getItem("currentUser")) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    
 
 
     const nameInput = document.getElementById("name");

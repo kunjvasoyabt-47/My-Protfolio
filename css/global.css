@@ -1,0 +1,36 @@
+/* ===============================
+   GLOBAL LOADER (ALL PAGES)
+================================ */
+
+/* Loader wrapper */
+.global-loader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+
+  
+    justify-content: center;
+    align-items: center;
+}
+
+/* Loader circle */
+.global-loader .spinner {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #e0e0e0;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

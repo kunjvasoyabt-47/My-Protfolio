@@ -9,8 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
 
     emailInput.addEventListener("input", function () {
-        if (emailInput.value.trim() === "") {
-            emailError.innerText = "*Email is required";
+
+          const emailRegex =
+            /^[a-zA-Z0-9._%+-]+@(?!gmail\.com$)(?!yahoo\.com$)(?!outlook\.com$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.innerText = "*Enter a valid business email (no Gmail/Yahoo/Outlook)";
             emailInput.style.border = "1px solid red";
         } else {
             emailError.innerText = "";
@@ -42,13 +45,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 user.password === passwordInput.value
         );
 
-        if (userFound) {
-        localStorage.setItem("currentUser", emailInput.value);
-        alert("Login successful!");
-        window.location.replace("home.html");
+       showLoader();
+
+        setTimeout(() => {
+            hideLoader();
+
+            if (userFound) {
+                localStorage.setItem("currentUser", emailInput.value);
+                window.location.href = "home.html";
             } else {
-            alert("Invalid email or password");
-        }
+                alert("Invalid email or password");
+            }
+        }, 800);
+
 
     });
 

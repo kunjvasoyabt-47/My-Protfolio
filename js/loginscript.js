@@ -1,5 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
 
+document.addEventListener("DOMContentLoaded", function () {
+    
     const emailInput = document.getElementById("email");
     const emailError = document.getElementById("email-error");
 
@@ -10,9 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     emailInput.addEventListener("input", function () {
 
-          const emailRegex =
-            /^[a-zA-Z0-9._%+-]+@(?!gmail\.com$)(?!yahoo\.com$)(?!outlook\.com$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(emailInput.value)) {
+       if (!isValidEmail(emailInput.value)) {
             emailError.innerText = "*Enter a valid business email (no Gmail/Yahoo/Outlook)";
             emailInput.style.border = "1px solid red";
         } else {
@@ -21,22 +20,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    passwordInput.addEventListener("input", function () {
-          const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            
-       if (!passwordRegex.test(passwordInput.value)) {
-            passwordError.innerText = "*Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)";
-            passwordInput.style.border = "1px solid red";
-        } else {
-            passwordError.innerText = "";
-            passwordInput.style.border = "1.2px solid green";
-        }
+   passwordInput.addEventListener("input", function () {
+    const rules = checkPasswordRules(passwordInput.value);
+    let messages = [];
+
+    if (!rules.hasLowercase) messages.push("• Add lowercase letter");
+    if (!rules.hasUppercase) messages.push("• Add uppercase letter");
+    if (!rules.hasNumber) messages.push("• Add number");
+    if (!rules.hasSpecial) messages.push("• Add special character");
+    if (!rules.hasMinLength) messages.push("• Minimum 8 characters");
+
+    if (messages.length > 0) {
+        passwordError.innerHTML = messages.join("<br>");
+        passwordInput.style.border = "1px solid red";
+    } else {
+        passwordError.innerHTML = "";
+        passwordInput.style.border = "1.2px solid green";
+    }
     });
+
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-
+        
         const users = JSON.parse(localStorage.getItem("users")) || [];
 
         const userFound = users.find(
@@ -44,20 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 user.email === emailInput.value &&
                 user.password === passwordInput.value
         );
+       
 
-       showLoader();
-
-        setTimeout(() => {
-            hideLoader();
-
-            if (userFound) {
+        if (!userFound) {
+            loginError.innerText = "Invalid email or password";
+            return;
+        }
+         showLoader();
+   
+        requestAnimationFrame(() => {
+            setTimeout(() => {
                 localStorage.setItem("currentUser", emailInput.value);
                 window.location.href = "home.html";
-            } else {
-                alert("Invalid email or password");
-            }
-        }, 800);
-
+            }, 800);
+        });
 
     });
 

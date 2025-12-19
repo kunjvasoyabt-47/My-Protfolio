@@ -26,9 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     usernameInput.addEventListener("input", function () {
-        const regex = /^[A-Za-z]*$/;
 
-        if (!regex.test(usernameInput.value)) {
+        if (!isValidUsername(usernameInput.value)) {
             usernameError.innerText = "*Enter only alphabets (no spaces)";
             usernameInput.style.border = "1px solid red";
         } else {
@@ -38,10 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     emailInput.addEventListener("input", function () {
-        const emailRegex =
-            /^[a-zA-Z0-9._%+-]+@(?!gmail\.com$)(?!yahoo\.com$)(?!outlook\.com$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (!emailRegex.test(emailInput.value)) {
+       
+        if (!isValidEmail(emailInput.value)) {
             emailError.innerText = "*Enter a valid business email (no Gmail/Yahoo/Outlook)";
             emailInput.style.border = "1px solid red";
         } else {
@@ -50,23 +47,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    passwordInput.addEventListener("input", function () {
-        const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      passwordInput.addEventListener("input", function () {
+    const rules = checkPasswordRules(passwordInput.value);
+    let messages = [];
 
-        if (!passwordRegex.test(passwordInput.value)) {
-            passwordError.innerText =
-                "*Min 8 chars with uppercase, lowercase, number & special char";
-            passwordInput.style.border = "1px solid red";
-        } else {
-            passwordError.innerText = "";
-            passwordInput.style.border = "1.2px solid green";
-        }
+    if (!rules.hasLowercase) messages.push("• Add lowercase letter");
+    if (!rules.hasUppercase) messages.push("• Add uppercase letter");
+    if (!rules.hasNumber) messages.push("• Add number");
+    if (!rules.hasSpecial) messages.push("• Add special character");
+    if (!rules.hasMinLength) messages.push("• Minimum 8 characters");
+
+    if (messages.length > 0) {
+        passwordError.innerHTML = messages.join("<br>");
+        passwordInput.style.border = "1px solid red";
+    } else {
+        passwordError.innerHTML = "";
+        passwordInput.style.border = "1.2px solid green";
+    }
     });
 
     confirmPasswordInput.addEventListener("input", function () {
         if (passwordInput.value !== confirmPasswordInput.value) {
-            confirmPasswordError.innerText = "*Passwords do not match";
+            confirmPasswordError.innerText = "*Confirm Passwords do not match with Password";
             confirmPasswordInput.style.border = "1px solid red";
         } else {
             confirmPasswordError.innerText = "";

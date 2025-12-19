@@ -3,9 +3,7 @@ if (!localStorage.getItem("currentUser")) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-
-
+    hideLoader();
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const messageInput = document.getElementById("message");
@@ -21,8 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nameInput.addEventListener("input", function () {
 
-        const regex = /^[A-Za-z]*$/;
-        if (!regex.test(nameInput.value)) {
+        if (!isValidUsername(nameInput.value)) {
             nameError.innerText = "*Enter only alphabets (no spaces)";
             nameInput.style.border = "1px solid red";
         } else {
@@ -32,10 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     emailInput.addEventListener("input", function () {
-        const emailRegex =
-            /^[a-zA-Z0-9._%+-]+@(?!gmail\.com$)(?!yahoo\.com$)(?!outlook\.com$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (!emailRegex.test(emailInput.value)) {
+       
+        if (!isValidEmail(emailInput.value)) {
             emailError.innerText = "*Enter a valid business email (no Gmail/Yahoo/Outlook)";
             emailInput.style.border = "1px solid red";
         } else {
@@ -82,6 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
             email: emailInput.value,
             message: messageInput.value
         };
+
+        showLoader();
+   
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                hideLoader();
+            }, 3500);
+        });
 
         fetch(sheetURL, {
             method: "POST",

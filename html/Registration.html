@@ -37,9 +37,11 @@
             <input type="date" id="dob" name="dob" required><br><br>
             <div id="dob-error" class="error-message" ></div>
 
-            <input type="checkbox" id="terms" name="terms" required>
-            <label for="terms">I agree Terms and Conditions</label><br><br>
-            <div id="terms-error" class="error-message" ></div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms">
+                <label for="terms">I agree Terms and Conditions</label>
+            </div>
+            <div id="terms-error" class="error-message"></div>
 
             <button type="submit" >Register</button>
 
@@ -47,13 +49,12 @@
                 Already completed registration?
                 <a href="login.html">Login here</a>
             </p>
-
         </form>
     </div>
     </div>
 
 </body>
-<div id="globalLoader" class="global-loader">
+<div class="global-loader">
     <div class="spinner"></div>
 </div>
 

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- ELEMENTS ---------- */
   const form = document.getElementById("contactForm")
-
+  const submitBtn = document.getElementById("submitBtn")
   const nameInput = document.getElementById("name")
   const emailInput = document.getElementById("email")
   const messageInput = document.getElementById("message")
@@ -20,19 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Declare variables for validation functions and loader
   const isValidUsername = (name) => /^[a-zA-Z\s]{2,30}$/.test(name)
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  let loaderVisible = false
-
-  const showLoader = () => {
-    loaderVisible = true
-    // Code to show loader
-    console.log("Loader shown")
-  }
-
-  const hideLoader = () => {
-    loaderVisible = false
-    // Code to hide loader
-    console.log("Loader hidden")
-  }
+ 
 
   /* ---------- LOGOUT ---------- */
   const logoutBtn = document.getElementById("logoutBtn")
@@ -138,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     showLoader()
+    submitBtn.disabled = true
 
     fetch(sheetURL, {
       method: "POST",
@@ -150,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (result === "success") {
             alert("Message sent successfully ✅")
+            submitBtn.disabled = false
             form.reset()
 
             nameInput.style.border = ""
@@ -158,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             alert("Something went wrong ❌")
           }
-        }, 800)
+        }, 2000)
       })
       .catch(() => {
         hideLoader()

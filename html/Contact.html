@@ -21,8 +21,9 @@
 
 </head>
 <body>
-    <div id="loader" class="loader"></div>
-
+    <div class="global-loader">
+    <div class="spinner"></div>
+</div>
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">My Portfolio</div>
@@ -111,7 +112,7 @@
                             <div class="error-message" id="messageError"></div>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
                     </form>
                     <div id="successMessage" class="success-message">Message sent successfully!</div>
                 </div>

@@ -4,6 +4,7 @@
   min-height: calc(100vh - 70px);
   padding: 3rem 2rem;
   overflow: hidden;
+  background-color: #f9faff;
 }
 
 .hero-background {

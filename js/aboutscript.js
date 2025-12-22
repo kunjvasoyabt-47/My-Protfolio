@@ -42,3 +42,4 @@ function showLoader() {
 function hideLoader() {
   document.getElementById("loader").style.display = "none"
 }
+

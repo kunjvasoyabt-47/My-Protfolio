@@ -51,6 +51,165 @@
   font-weight: bold;
 }
 
+/* Added projects section styles that match existing design patterns */
+.projects-section {
+  margin-top: 2rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* Enhanced project card to support images and clickable links */
+.project-card {
+  background: rgba(74, 144, 226, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #4a90e2;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+  left: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(74, 144, 226, 0.2);
+  border-left-width: 6px;
+}
+
+/* Added project image container and styling */
+.project-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+/* Added project content container for padding */
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.project-year {
+  color: #4a90e2;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(74, 144, 226, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.project-description {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: #4a90e2;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: #357abd;
+  transform: scale(1.05);
+}
+
+/* Staggered animation for project cards */
+.project-card:nth-child(1) {
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.project-card:nth-child(2) {
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+.project-card:nth-child(3) {
+  animation: fadeInUp 1s ease-out 1.1s both;
+}
+
+.project-card:nth-child(4) {
+  animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+/* Responsive adjustments for projects */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Adjust image height for mobile */
+  .project-image {
+    height: 180px;
+  }
+}
+
 .education-section {
   margin-top: 2rem;
 }

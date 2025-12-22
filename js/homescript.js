@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("currentUser")
       window.location.href = "login.html"
     })
+  
   }
 
   // CTA button actions
@@ -60,9 +61,22 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  if (ctaSecondary) {
-    ctaSecondary.addEventListener("click", () => {
-      window.location.href = "about.html"
-    })
-  }
+  
 })
+
+
+function openAndDownloadResume() {
+  const resumePath = "../assets/sample_dummy_resume.pdf";
+
+  // 1️⃣ Open in new tab
+  window.open(resumePath, "_blank");
+
+  // 2️⃣ Trigger download
+  const link = document.createElement("a");
+  link.href = resumePath;
+  link.download = "sample_dummy_resume.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
